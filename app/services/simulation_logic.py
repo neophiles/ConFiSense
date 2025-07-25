@@ -160,3 +160,63 @@ def simulate_debt_management(debt, monthly_payment, interest_rate, extra_payment
             ]
         }
     }
+
+
+
+
+def simulate_investing(initial, monthly, return_rate, years):
+    """
+    Simulate the growth of an investment over time using the future value formula
+    1. Future Value of Lump Sum: FV = P × (1 + r)^n
+    2. Future Value of Annuity: FV = PMT × [((1 + r)^n - 1) / r] × (1 + r)
+    where:
+    - P = initial investment
+    - PMT = monthly contribution   
+    - r = monthly return rate (annual rate / 12)
+    - n = total number of months (years * 12)
+    """
+
+
+    # months is the total number of months, calculated as years * 12
+    # r is the monthly return rate, calculated as annual return rate divided by 12 and converted to decimal
+    # fv_lump_sum is the future value of the initial investment
+    # fv_annuity is the future value of the monthly contributions
+    # total is the sum of fv_lump_sum and fv_annuity
+    months = years * 12
+    r = return_rate / 12 / 100
+
+    fv_lump_sum = initial * ((1 + r) ** months)
+    fv_annuity = monthly * (((1 + r) ** months - 1) / r) * (1 + r)
+    total = fv_lump_sum + fv_annuity
+
+    projection = []
+    current = initial
+    for m in range(1, months + 1):
+        current = current * (1 + r) + monthly
+        projection.append(round(current))
+
+    return {
+        "data": projection,
+        "summary": f"Estimated future value: ₱{total:,.0f} after {years} years.",
+        "math_explanation": {
+            "title": "The 'Glass Box': How We Calculate",
+            "sections": [
+                {
+                    "heading": "1. Assumptions",
+                    "items": [
+                        f"Initial: ₱{initial:,}",
+                        f"Monthly: ₱{monthly:,}",
+                        f"Annual Return: {return_rate}%",
+                        f"Time Horizon: {years} years"
+                    ]
+                },
+                {
+                    "heading": "2. Formula",
+                    "items": [
+                        "FV = Initial × (1 + r)^n + PMT × [((1 + r)^n - 1) / r] × (1 + r)",
+                        "*r = monthly rate, n = total months*"
+                    ]
+                }
+            ]
+        }
+    }
