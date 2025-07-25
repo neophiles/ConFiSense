@@ -86,3 +86,77 @@ def simulate_budgeting(income, fixed_expenses, discretionary_pct, target_savings
             ]
         }
     }
+
+
+
+def simulate_debt_management(debt, monthly_payment, interest_rate, extra_payment):
+    """
+    Simulate the process of paying off debt over time
+    """
+
+    # rate is the monthly interest rate, calculated from the annual interest rate
+    # balance starts at the total debt
+    # month is the counter for how many months it takes to pay off the debt
+    # total_interest accumulates the total interest paid
+    # history keeps track of the remaining balance each month
+    # payment is the total monthly payment including any extra payment
+    rate = interest_rate / 12 / 100
+    balance = debt
+    month = 0
+    total_interest = 0
+    history = []
+    payment = monthly_payment + extra_payment
+
+
+    # if payment is less than or equal to the interest accrued, debt cannot be reduced
+    if payment <= balance * rate:
+        return {
+            "data": [],
+            "summary": "Payment too low to reduce debt.",
+            "math_explanation": {"title": "", "sections": []}
+        }
+
+    # loop until the balance is paid off
+    # interest is calculated as the balance times the monthly rate
+    # principal is the payment minus the interest
+    # balance is reduced by the principal
+    # total_interest is accumulated
+    # month is incremented
+    # history is updated with the remaining balance
+    while balance > 0:
+        interest = balance * rate
+        principal = payment - interest
+        balance -= principal
+        total_interest += interest
+        month += 1
+        history.append(balance if balance > 0 else 0)
+
+        if month > 600: # prevent infinite loop
+            break
+
+    return {
+        "data": history,
+        "summary": f"Debt paid off in {month} months with ₱{total_interest:,.0f} in interest.",
+        "math_explanation": {
+            "title": "The 'Glass Box': How We Calculate",
+            "sections": [
+                {
+                    "heading": "1. Inputs",
+                    "items": [
+                        f"Total Debt: ₱{debt:,}",
+                        f"Annual Interest Rate: {interest_rate}%",
+                        f"Monthly Payment: ₱{monthly_payment:,}",
+                        f"Extra Payment: ₱{extra_payment:,}"
+                    ]
+                },
+                {
+                    "heading": "2. Formula",
+                    "items": [
+                        "Monthly Interest = Balance × Monthly Rate",
+                        "Principal = Payment - Interest",
+                        "Balance -= Principal (until paid off)"
+                    ]
+                }
+            ]
+        }
+    }
