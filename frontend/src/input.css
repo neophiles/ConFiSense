@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@layer base {
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {   
+        font-family: Arial;
+    }
+
+}
+
+@layer components {
+
+    .btn {
+        border-width: 0px;
+        border-radius: 10px;
+    }
+
+    .card-btn {
+        background-color: #1f2937;
+        width: 100%;
+        padding: 1.5rem;
+        text-align: left;
+        cursor: pointer;
+        filter: drop-shadow(0px 5px 3px black);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .card-btn:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .scenario-icon {
+        font-size: 2rem;
+    }
+
+    .scenario-name {
+        color: white;
+        font-size: 1.25rem;
+        font-weight: bold;        
+    }
+
+    .scenario-info {
+        font-size: 1rem;
+    }
+
+    .scenario-desc {
+        color: #9780e4;
+    }
+
+    .scenario-tip {
+        color: #7c8491;
+    }
+
+    /*
+    @media (width >= 48rem) {
+
+        .scenario-icon {
+            font-size: 2rem;
+        }
+
+        .scenario-name {
+            font-size: 1.25rem;  
+        }
+
+        .scenario-info {
+            font-size: 1rem;
+        }
+
+    }
+    */
+}
