@@ -267,3 +267,70 @@ def simulate_education_fund(today_cost, years, current_savings, monthly_contrib,
             ]
         }
     }
+
+
+
+
+def simulate_major_purchase(price, down_pct, years_to_save, current_savings, monthly_contrib, savings_return, loan_rate, loan_term):
+    """
+    Simulate the process of saving for a major purchase and taking out a loan
+    """
+
+    # down_payment is the amount needed for the down payment
+    # loan_amount is the total amount of the loan after the down payment
+    # save_months is the total number of months to save, calculated as years_to_save
+    # r_save is the monthly savings return rate, calculated as annual savings return divided by 12 and converted to decimal
+    # fv_savings is the future value of the savings after the saving period
+    # r_loan is the monthly loan rate, calculated as annual loan rate divided by 12 and converted to decimal
+    # n_loan is the total number of months for the loan term, calculated as loan_term * 12
+    # monthly_loan_payment is the monthly payment for the loan, calculated using the formula for an amortizing loan
+    # total_interest is the total interest paid over the life of the loan, calculated as the total payments minus the loan amount
+    down_payment = price * (down_pct / 100)
+    loan_amount = price - down_payment
+    save_months = years_to_save * 12
+    r_save = savings_return / 12 / 100
+
+    fv_savings = current_savings * ((1 + r_save) ** save_months) + monthly_contrib * (((1 + r_save) ** save_months - 1) / r_save) * (1 + r_save)
+
+    r_loan = loan_rate / 12 / 100
+    n_loan = loan_term * 12
+
+    if r_loan == 0:
+        monthly_loan_payment = loan_amount / n_loan
+    else:
+        monthly_loan_payment = loan_amount * r_loan / (1 - (1 + r_loan) ** -n_loan)
+
+    total_interest = (monthly_loan_payment * n_loan) - loan_amount
+
+    return {
+        "data": {
+            "FV Savings": fv_savings,
+            "Required Down Payment": down_payment,
+            "Monthly Loan Payment": monthly_loan_payment,
+            "Total Interest": total_interest
+        },
+        "summary": f"Monthly loan payment: ₱{monthly_loan_payment:,.0f}, Total interest: ₱{total_interest:,.0f}.",
+        "math_explanation": {
+            "title": "The 'Glass Box': How We Calculate",
+            "sections": [
+                {
+                    "heading": "1. Purchase Plan",
+                    "items": [
+                        f"Target Price: ₱{price:,}",
+                        f"Down Payment: {down_pct}%",
+                        f"Loan Term: {loan_term} years",
+                        f"Loan Rate: {loan_rate}%",
+                        f"Savings Rate: {savings_return}%"
+                    ]
+                },
+                {
+                    "heading": "2. Formulas",
+                    "items": [
+                        "FV Savings = Lump Sum + Monthly Contributions Compounded",
+                        "Loan Payment = Loan × [r / (1 - (1 + r)^-n)]",
+                        "Total Interest = Payment × n - Loan"
+                    ]
+                }
+            ]
+        }
+    }
