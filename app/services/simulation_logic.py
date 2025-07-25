@@ -40,3 +40,49 @@ def simulate_emergency_fund(target, monthly_contrib, current_savings):
             ]
         }
     }
+
+
+
+def simulate_budgeting(income, fixed_expenses, discretionary_pct, target_savings):
+    """
+    Simulate a monthly budget based on income, fixed expenses, discretionary percentage, and target savings
+    """
+
+    # calculate discretionary spending and potential savings
+    # discretionary_pct is a percentage, so we divide by 100
+    # total expenses is the sum of fixed expenses and discretionary spending
+    # potential savings is income minus total expenses
+    discretionary = income * (discretionary_pct / 100)
+    total_expenses = fixed_expenses + discretionary
+    potential_savings = income - total_expenses
+
+    return {
+        "data": {
+            "Fixed Expenses": fixed_expenses,
+            "Discretionary": discretionary,
+            "Potential Savings": potential_savings
+        },
+        "summary": f"You can potentially save ₱{potential_savings:,.0f} per month.",
+        "math_explanation": {
+            "title": "The 'Glass Box': How We Calculate",
+            "sections": [
+                {
+                    "heading": "1. Income Breakdown",
+                    "items": [
+                        f"Monthly Income: ₱{income:,}",
+                        f"Fixed Expenses: ₱{fixed_expenses:,}",
+                        f"Discretionary (%): {discretionary_pct}%",
+                        f"Target Monthly Savings: ₱{target_savings:,}"
+                    ]
+                },
+                {
+                    "heading": "2. Formula",
+                    "items": [
+                        "Discretionary = Income × Discretionary %",
+                        "Total Expenses = Fixed + Discretionary",
+                        "Potential Savings = Income - Total Expenses"
+                    ]
+                }
+            ]
+        }
+    }
