@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
-from app.dependencies import get_db_session
+from app.db.session import get_session as get_db_session
 from app.schemas.simulation import SimulationInput, SimulationOutput
 from app.services.simulation_logic import run_simulation
 
