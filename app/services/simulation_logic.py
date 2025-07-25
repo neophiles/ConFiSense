@@ -220,3 +220,50 @@ def simulate_investing(initial, monthly, return_rate, years):
             ]
         }
     }
+
+
+
+
+def simulate_education_fund(today_cost, years, current_savings, monthly_contrib, return_rate, inflation_rate):
+    """
+    Simulate the growth of an education fund over time
+    """
+
+    # future_cost is the cost of education in the future, calculated using the inflation rate
+    # months is the total number of months until the fund is needed, calculated as years * 12
+    # r is the monthly return rate, calculated as annual return rate divided by 12 and converted to decimal
+    # fv_savings is the future value of the current savings and monthly contributions
+    # gap is the difference between the future value of savings and the future cost
+    future_cost = today_cost * ((1 + inflation_rate / 100) ** years)
+    months = years * 12
+    r = return_rate / 12 / 100
+
+    fv_savings = current_savings * ((1 + r) ** months) + monthly_contrib * (((1 + r) ** months - 1) / r) * (1 + r)
+    gap = fv_savings - future_cost
+
+    return {
+        "data": [fv_savings, future_cost],
+        "summary": f"You will {'exceed' if gap >= 0 else 'fall short by'} ₱{abs(gap):,.0f} in {years} years.",
+        "math_explanation": {
+            "title": "The 'Glass Box': How We Calculate",
+            "sections": [
+                {
+                    "heading": "1. Projections",
+                    "items": [
+                        f"Today's Cost: ₱{today_cost:,}",
+                        f"Years Until Needed: {years}",
+                        f"Expected Inflation: {inflation_rate}%",
+                        f"Expected Return: {return_rate}%"
+                    ]
+                },
+                {
+                    "heading": "2. Formula",
+                    "items": [
+                        "Future Cost = Cost × (1 + Inflation)^Years",
+                        "Future Value = Lump Sum + Monthly Contributions Compounded",
+                        "Gap = Future Value - Future Cost"
+                    ]
+                }
+            ]
+        }
+    }
