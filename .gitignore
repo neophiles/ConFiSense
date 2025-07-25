@@ -1,3 +1,7 @@
 venv
 __pycache__
 *.pyc
+
+# Tailwind
+frontend/node_modules/
+frontend/src/output.css
