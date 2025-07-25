@@ -334,3 +334,24 @@ def simulate_major_purchase(price, down_pct, years_to_save, current_savings, mon
             ]
         }
     }
+
+
+
+
+def run_simulation(scenario: str, params: dict):
+    """
+    Run the appropriate financial simulation based on the scenario and parameters provided
+    """
+    simulations = {
+        "emergency": simulate_emergency_fund,
+        "budgeting": simulate_budgeting,
+        "debt": simulate_debt_management,
+        "investing": simulate_investing,
+        "education": simulate_education_fund,
+        "purchase": simulate_major_purchase,
+    }
+
+    if scenario not in simulations:
+        raise ValueError("Unsupported scenario")
+
+    return simulations[scenario](**params)
