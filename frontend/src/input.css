@@ -9,11 +9,15 @@
     * {
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
     }
 
     html {   
         font-family: Arial;
+        min-height: 100%
+    }
+
+    body {
+        height: 100%;
     }
 
 }
@@ -45,17 +49,20 @@
     }
 
     .scenario-icon {
-        font-size: 2rem;
+        font-size: var(--text-base); /* 1rem (16px) */ 
+        line-height: var(--text-base--line-height); /* calc(1.5 / 1) */
     }
 
     .scenario-name {
         color: white;
-        font-size: 1.25rem;
+        font-size: var(--text-sm);
+        line-height: var(--text-sm--line-height);
         font-weight: bold;        
     }
 
     .scenario-info {
-        font-size: 1rem;
+        font-size: var(--text-xs);
+        line-height: var(--text-xs--line-height);
     }
 
     .scenario-desc {
@@ -66,21 +73,23 @@
         color: #7c8491;
     }
 
-    /*
     @media (width >= 48rem) {
 
         .scenario-icon {
-            font-size: 2rem;
+            font-size: var(--text-3xl);
+            line-height: var(--text-3xl--line-height);
         }
 
         .scenario-name {
-            font-size: 1.25rem;  
+            font-size: var(--text-lg);
+            line-height: var(--text-lg--line-height);  
         }
 
         .scenario-info {
-            font-size: 1rem;
+            font-size: var(--text-base);
+            line-height: var(--text-base--line-height);
         }
 
     }
-    */
+
 }
