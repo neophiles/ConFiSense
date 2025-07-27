@@ -7,7 +7,7 @@
     <script src="app.js"></script>
     <title>ConFiSense</title>
 </head>
-<body class="bg-linear-to-b from-[#060e27] to-blue-900 m-0 p-0">
+<body class="bg-linear-to-b from-[#060e27] to-blue-900 bg-no-repeat bg-fixed bg-cover">
     <header class="min-w-[320px] py-4 px-0">
         <div class="flex flex-row justify-between w-full max-w-full my-0 mx-auto py-0 px-4">
             <div class="flex flex-row items-center gap-4">
@@ -17,12 +17,12 @@
                     </svg>
                 </button>
                 <div class="flex flex-col">
-                    <h1 class="text-lg md:text-2xl lg:text-3xl font-bold">ConFiSense</h1>
-                    <h4 class="text-[#7c8491] text-xs md:text-sm lg:text-base leading-4">Your AI-Powered Financial Co-Pilot</h4>
+                    <h1 class="text-lg min-[550px]:text-2xl min-[850px]:text-3xl font-bold">ConFiSense</h1>
+                    <h4 class="text-[#7c8491] text-xs min-[550px]:text-sm min-[850px]:text-base leading-4">Your AI-Powered Financial Co-Pilot</h4>
                 </div>
             </div>
             <div class="flex flex-row items-center">
-                <button class="flex flex-row items-center gap-1 btn text-sm hover:bg-[#374151] font-bold p-1 cursor-pointer ">
+                <button class="flex flex-row items-center gap-1 btn text-sm hover:bg-[#374151] font-bold p-1">
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
                     </svg>
@@ -31,16 +31,16 @@
         </div>
     </header>
     <main class="min-w-[320px] py-8 px-0">
-        <div class="w-[95%] md:w-[80%] max-w-[1400px] h-full my-0 mx-auto py-0 px-8">
+        <div class="max-w-screen-xl h-full my-0 mx-auto py-0 px-8">
             
             <!-- Home -->
             <div id="home" class="flex flex-col gap-8">
                 <div class="flex flex-col gap-1">
-                    <h2 class="text-sm md:text-xl lg:text-2xl font-bold">Hello, what would you like to plan for?</h2>
-                    <h4 class="text-[#7c8491] text-xs md:text-sm lg:text-base">Select a scenario to model outcomes and reduce uncertainty before you act.</h4>
+                    <h2 class="text-sm min-[850px]:text-xl lg:text-2xl font-bold">Hello, what would you like to plan for?</h2>
+                    <h4 class="text-[#7c8491] text-xs min-[850px]:text-sm lg:text-base">Select a scenario to model outcomes and reduce uncertainty before you act.</h4>
                 </div>
-                <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-full w-full">
-                    <button class="btn card-btn" onclick="showDashboard()">
+                <div id="card-grid" class="grid grid-cols-1 min-[550px]:grid-cols-2 min-[850px]:grid-cols-3 gap-6 h-full w-full">
+                    <button class="btn card-btn" onclick="showDashboard(this)" data-scenario="emergency">
                         <div class="card-info">
                             <h1 class="scenario-icon">🛡️</h1>
                             <h2 class="scenario-name">Emergency Fund</h2>
@@ -48,7 +48,7 @@
                             <p class="scenario-info scenario-tip">For handling unexpected expenses.</p>
                         </div>
                     </button>
-                    <button class="btn card-btn">
+                    <button class="btn card-btn" onclick="showDashboard(this)" data-scenario="budgeting">
                         <div class="card-info">
                             <h1 class="scenario-icon">📃</h1>
                             <h2 class="scenario-name">Budgeting and Expenses</h2>
@@ -56,7 +56,7 @@
                             <p class="scenario-info scenario-tip">To understand where your money goes.</p>
                         </div>
                     </button>
-                    <button class="btn card-btn">
+                    <button class="btn card-btn" onclick="showDashboard(this)" data-scenario="debt">
                         <div class="card-info">
                             <h1 class="scenario-icon">💳</h1>
                             <h2 class="scenario-name">Debt Management</h2>
@@ -64,7 +64,7 @@
                             <p class="scenario-info scenario-tip">For credits and loans.</p>
                         </div>
                     </button>
-                    <button class="btn card-btn">
+                    <button class="btn card-btn" onclick="showDashboard(this)" data-scenario="savings">
                         <div class="card-info">
                             <h1 class="scenario-icon">📈</h1>
                             <h2 class="scenario-name">Savings and Investment</h2>
@@ -72,7 +72,7 @@
                             <p class="scenario-info scenario-tip">For long-term goals like retirement.</p>
                         </div>
                     </button>
-                    <button class="btn card-btn">
+                    <button class="btn card-btn" onclick="showDashboard(this)" data-scenario="education">
                         <div class="card-info">
                             <h1 class="scenario-icon">🎓</h1>
                             <h2 class="scenario-name">Education Funding</h2>
@@ -80,7 +80,7 @@
                             <p class="scenario-info scenario-tip">For yourself or your children.</p>
                         </div>
                     </button>
-                    <button class="btn card-btn">
+                    <button class="btn card-btn" onclick="showDashboard(this)" data-scenario="major_purchase">
                         <div class="card-info">
                             <h1 class="scenario-icon">🏡</h1>
                             <h2 class="scenario-name">Major Purchase Planning</h2>
@@ -92,24 +92,47 @@
             </div>
             <!-- Scenario Dashboard -->
             <div id="dashboard" class="flex flex-col gap-8 hidden">
-                <button onclick="showHome()" class="flex flex-row items-center gap-1 btn text-sm hover:text-[#9780e4] cursor-pointer">
+                <button onclick="showHome()" class="flex flex-row items-center gap-1 btn text-sm hover:text-[#9780e4]">
                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                     </svg>
                     <span class="inline text-xs">Back to scenarios</span>
                 </button>
-                <div id="widget-grid" class="grid grid-cols-[1fr_2fr] grid-rows-[auto_auto_1fr] gap-6">
+                <div id="widget-grid" class="grid grid-cols-1 min-[850px]:grid-cols-[1.5fr_2fr] grid-rows-[auto_auto_1fr] gap-6 h-full w-full">
                     <div class="dashboard-widget">
-
+                        <h2 class="widget-title">Adjust Your Parameters</h2>
+                        <h2 class="widget-title">Your Current Situation</h2>
+                        <h2 class="widget-title">Your Actions and Goals</h2>
+                        <div class="flex flex-row">
+                            <button class="btn widget-btn bg-linear-to-r from-blue-700 to-violet-700 p-1">
+                                Run Simulation
+                            </button>
+                        </div>
                     </div>
                     <div class="dashboard-widget">
-                        <h2 class="font-bold">Projected Outcomes</h2>
+                        <h2 class="widget-title">Projected Outcomes</h2>
+                        <div class="flex flex-col min-[550px]:flex-row gap-4">
+                            <button class="btn widget-btn bg-linear-to-r from-blue-700 to-violet-700 p-1">
+                                Explain with AI
+                            </button>
+                            <button class="btn widget-btn bg-green-800">
+                                Show My Math
+                            </button>
+                            <button class="btn widget-btn bg-amber-600">
+                                Download Report
+                            </button>                            
+                        </div>
                     </div>
-                    <div class="dashboard-widget col-span-2">
-                        <h2 class="font-bold">AI-Powered Explanation</h2>
+                    <div class="dashboard-widget col-span-1 min-[850px]:col-span-2">
+                        <h2 class="widget-title">AI-Powered Explanation</h2>
+                        <div class="flex flex-row">
+                            <button class="btn widget-btn bg-linear-to-r from-blue-700 to-violet-700 p-1">
+                                Suggest Next Steps
+                            </button>
+                        </div>
                     </div>
-                    <div class="dashboard-widget col-span-2">
-                        <h2 class="font-bold">Suggested Action Steps</h2>
+                    <div class="dashboard-widget col-span-1 min-[850px]:col-span-2">
+                        <h2 class="widget-title">Suggested Action Steps</h2>
                     </div>
                 </div>
             </div>
