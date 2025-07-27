@@ -98,19 +98,23 @@
                     </svg>
                     <span class="inline text-xs">Back to scenarios</span>
                 </button>
+                <h2 id="scenario-title" class="widget-title">Hello</h2>
                 <div id="widget-grid" class="grid grid-cols-1 min-[850px]:grid-cols-[1.5fr_2fr] grid-rows-[auto_auto_1fr] gap-6 h-full w-full">
-                    <div class="dashboard-widget">
+                    <div id="simulation-form" class="dashboard-widget">
                         <h2 class="widget-title">Adjust Your Parameters</h2>
-                        <h2 class="widget-title">Your Current Situation</h2>
-                        <h2 class="widget-title">Your Actions and Goals</h2>
+                        <div id="slider-fields" class="flex flex-col">
+                            <h2 class="widget-title">Your Current Situation</h2>
+                            <h2 class="widget-title">Your Actions and Goals</h2>
+                        </div>
                         <div class="flex flex-row">
-                            <button class="btn widget-btn bg-linear-to-r from-blue-700 to-violet-700 p-1">
+                            <button type="submit" class="btn widget-btn bg-linear-to-r from-blue-700 to-violet-700 p-1">
                                 Run Simulation
                             </button>
                         </div>
                     </div>
-                    <div class="dashboard-widget">
+                    <div id="output" class="dashboard-widget">
                         <h2 class="widget-title">Projected Outcomes</h2>
+                        <div id="chart"></div>
                         <div class="flex flex-col min-[550px]:flex-row gap-4">
                             <button class="btn widget-btn bg-linear-to-r from-blue-700 to-violet-700 p-1">
                                 Explain with AI
@@ -125,6 +129,7 @@
                     </div>
                     <div class="dashboard-widget col-span-1 min-[850px]:col-span-2">
                         <h2 class="widget-title">AI-Powered Explanation</h2>
+                        <div id="ai-explanation>"></div>
                         <div class="flex flex-row">
                             <button class="btn widget-btn bg-linear-to-r from-blue-700 to-violet-700 p-1">
                                 Suggest Next Steps
@@ -133,6 +138,7 @@
                     </div>
                     <div class="dashboard-widget col-span-1 min-[850px]:col-span-2">
                         <h2 class="widget-title">Suggested Action Steps</h2>
+                        <div id="ai-suggest"></div>
                     </div>
                 </div>
             </div>
